@@ -68,15 +68,11 @@
 	(function(){
 
 		var shuffleListener = document.getElementById("shuffle");
-		shuffleListener.addEventListener("click", shuffeCards);
+		shuffleListener.addEventListener("click", shuffleCards);
 
 		var cardArray = ["1s", "2s", "3s", "4s", "5s", "6s", "7s", "8s", "9s", "10s", "11s", "12s", "13s", "1d", "2d", "3d", "4d", "5d", "6d", "7d", "8d", "9d", "10d", "11d", "12d", "13d", "13c","12c", "11c", "10c", "9c", "8c", "7c", "6c", "5c", "4c", "3c", "2c", "1c", "13h", "12h", "11h", "10h", "9h", "8h", "7h", "6h", "5h", "4h", "3h", "2h", "1h"];
-
-		function clearDeck() {
-			for (i=0; i<52; i++) {
-				cardArray[i]="";
-			}
-		}
+		var newDeck = Array;
+		var pickACard = 0;
 
 		function displayCards() {
 			var imageToChange = "nada";
@@ -88,40 +84,25 @@
 			}
 		}
 
+		function copyCardsBack() {
+			for (i=0; i<52; i++) {
+				cardArray[i]=newDeck[i];
+			}
+		}
+
 		//Immediately-Invoked Function Expression to display the cards on startup.
 		//(displayCards());
 
-		function shuffeCards() {
-			clearDeck();
-			var card=0;
-			var rank=0;
-			var suit="";
-			var cardIsDuplicate=true;
-
+		//Shuffle the deck by randomly moving cards from cardArray to newDeck.
+		function shuffleCards() {
 			for (i=0; i<52; i++) {
-
-				cardIsDuplicate = true;
-				while (cardIsDuplicate==true) {
-					cardIsDuplicate = false;
-
-					rank=Math.floor((Math.random() * 13) + 1);
-
-					suit=Math.floor((Math.random() * 4) + 1);
-					if (suit==1) {suit="s";}
-					if (suit==2) {suit="d";}
-					if (suit==3) {suit="c";}
-					if (suit==4) {suit="h";}
-
-					for (a=0; a<52; a++) {
-						if (cardArray[a] == rank+suit) {
-							cardIsDuplicate = true;
-						}
-					}
-					if (cardIsDuplicate==false) {
-						cardArray[i]=rank+suit;
-					}
-				}
+				pickACard=Math.floor(Math.random() * cardArray.length);
+				newDeck[i]=cardArray[pickACard];
+				//The splice method removes the card from the specified (pickACard) location.
+				//The second parameter, in this case a 1, indicates how many entries to remove.
+				cardArray.splice(pickACard,1);
 			}
+			copyCardsBack();
 			displayCards();
 		}
 
@@ -129,3 +110,4 @@
 	</script>
 </body>
 </html>
+
