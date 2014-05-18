@@ -71,7 +71,7 @@
 		shuffleListener.addEventListener("click", shuffleCards);
 
 		var cardArray = ["1s", "2s", "3s", "4s", "5s", "6s", "7s", "8s", "9s", "10s", "11s", "12s", "13s", "1d", "2d", "3d", "4d", "5d", "6d", "7d", "8d", "9d", "10d", "11d", "12d", "13d", "13c","12c", "11c", "10c", "9c", "8c", "7c", "6c", "5c", "4c", "3c", "2c", "1c", "13h", "12h", "11h", "10h", "9h", "8h", "7h", "6h", "5h", "4h", "3h", "2h", "1h"];
-		var newDeck = Array;
+		var newDeck = [];
 		var pickACard = 0;
 
 		function displayCards() {
